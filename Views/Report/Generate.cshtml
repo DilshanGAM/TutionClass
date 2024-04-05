@@ -1,0 +1,63 @@
+﻿@model TutionClass.Models.ReportViewModel
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Class Information</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Grade</th>
+                        <th>Teacher Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.ClassInfo.SubjectName</td>
+                        <td>@Model.ClassInfo.Grade</td>
+                        <td>@Model.ClassInfo.TeacherName</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Payments</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Payment Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var payment in Model.Payments)
+                    {
+                        <tr>
+                            <td>@payment.StudentID</td>
+                            <td>@payment.Year</td>
+                            <td>@payment.Month</td>
+                            <td>@payment.PaymentMethod</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="font-weight-bold">Total : LKR.@Model.getTotal()</div>
+    <button onclick="
+    window.print()">
+        Print
+    </button>
+</div>

@@ -1,0 +1,50 @@
+﻿@model List<TutionClass.Models.Class>
+
+@{
+    ViewBag.Title = "Classes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Class List</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Grade</th>
+                <th>Teacher Name</th>
+                <th>Price</th>
+                <th>Name of Day</th>
+                <th>Action</th> <!-- New column for Delete button -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var classObj in Model)
+            {
+                <tr>
+                    <td>@classObj.SubjectName</td>
+                    <td>@classObj.Grade</td>
+                    <td>@classObj.TeacherName</td>
+                    <td>@classObj.Price</td>
+                    <td>@classObj.NameOfDay</td>
+                    <td>
+                        <form action="@Url.Action("Delete", "Class")" method="post">
+                            @Html.Hidden("subjectName", classObj.SubjectName)
+                            @Html.Hidden("grade", classObj.Grade)
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Class/AddClass" class="btn btn-primary">Add Class</a>
+}
+else
+{
+    <p>No classes found.</p>
+    <a href="/Class/AddClass" class="btn btn-primary">Add Class</a>
+}
+}

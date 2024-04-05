@@ -1,0 +1,38 @@
+﻿@model List<TutionClass.Models.Payment>
+
+@{
+    ViewBag.Title = "Payment Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Payment Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Subject Name</th>
+            <th>Grade</th>
+            <th>Payment Method</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.StudentID</td>
+                <td>@payment.Year</td>
+                <td>@payment.Month</td>
+                <td>@payment.SubjectName</td>
+                <td>@payment.Grade</td>
+                <td>@payment.PaymentMethod</td>
+                <td>@payment.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddPayment", "Payment")" class="btn btn-primary">Add Payment</a>

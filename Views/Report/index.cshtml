@@ -1,0 +1,21 @@
+﻿@model TutionClass.Models.ReportFilterViewModel
+
+@{
+    ViewBag.Title = "Generate Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Generate Report</h2>
+
+@using (Html.BeginForm("Generate", "Report", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubjectName)
+        @Html.DropDownListFor(model => model.SubjectName, new SelectList(ViewBag.Subjects), "Select Subject", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Grade)
+        @Html.DropDownListFor(model => model.Grade, Enumerable.Range(1, 13).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Select Grade", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+}
